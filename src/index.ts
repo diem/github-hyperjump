@@ -1,8 +1,8 @@
 import { Application, Context } from "probot";
 import * as express from "express";
 
-export = (app: Application) => {
-  const router = app.route("/hyperjump");
+export = ({app, getRouter}: {app: Application; getRouter: (path?: string) => express.Router;}) => {
+  const router = getRouter("/hyperjump");
   router.use(express.json())
   router.post("/jump", async (req, res) => {
     console.log(req.body);
